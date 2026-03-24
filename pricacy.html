@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Blast Ship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep:    #050d15;
+      --bg-card:    #0a1929;
+      --bg-panel:   #0d2137;
+      --cyan:       #00e5ff;
+      --green:      #00ff88;
+      --text:       #cfd8e3;
+      --text-muted: #5a7a93;
+      --border:     rgba(0,229,255,0.18);
+      --glow-cyan:  0 0 24px rgba(0,229,255,0.35);
+      --radius:     14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grid backdrop */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Nav ─────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 68px;
+      background: rgba(5,13,21,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 34px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-logo-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 2px;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .nav-back:hover { color: var(--cyan); border-color: rgba(0,229,255,0.4); }
+
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+
+    /* ─── Page hero ───────────────────────────────────────────────────── */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 72px 24px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(0,100,160,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 16px;
+      border: 1px solid rgba(0,229,255,0.28);
+      border-radius: 40px;
+      background: rgba(0,229,255,0.05);
+    }
+
+    .page-hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(0,229,255,0.35);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .page-hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ─── Layout ──────────────────────────────────────────────────────── */
+    .layout {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 780px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { display: none; }
+    }
+
+    /* ─── Table of contents (sticky sidebar) ─────────────────────────── */
+    .toc {
+      position: sticky;
+      top: 88px;
+    }
+
+    .toc-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc a {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 7px;
+      border-left: 2px solid transparent;
+      transition: color 0.18s, background 0.18s, border-color 0.18s;
+      line-height: 1.4;
+    }
+
+    .toc a:hover {
+      color: var(--cyan);
+      background: rgba(0,229,255,0.06);
+      border-left-color: var(--cyan);
+    }
+
+    /* ─── Document ────────────────────────────────────────────────────── */
+    .doc {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ─── Section block ───────────────────────────────────────────────── */
+    .doc-section {
+      padding: 36px 0 36px;
+      border-bottom: 1px solid rgba(0,229,255,0.08);
+    }
+
+    .doc-section:last-child { border-bottom: none; }
+
+    .doc-section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-number {
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bg-deep);
+      background: var(--cyan);
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: 0;
+    }
+
+    .doc-section h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ─── Text content ────────────────────────────────────────────────── */
+    .doc-body {
+      padding-left: 42px;   /* aligns with text after the number badge */
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .doc-body p {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .doc-body p.muted {
+      color: var(--text-muted);
+      font-size: 13.5px;
+    }
+
+    .doc-body h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .doc-body ul, .doc-body ol {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .doc-body li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .doc-body li::marker {
+      color: var(--cyan);
+    }
+
+    .doc-body a {
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,229,255,0.30);
+      transition: border-color 0.18s, color 0.18s;
+    }
+
+    .doc-body a:hover {
+      color: #fff;
+      border-color: rgba(0,229,255,0.8);
+    }
+
+    .doc-body strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Inline highlight chip */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cyan);
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.25);
+      border-radius: 6px;
+      padding: 2px 9px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.3px;
+    }
+
+    /* Info / warning callout box */
+    .callout {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--cyan);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    .callout.warn {
+      border-left-color: #ffd700;
+    }
+
+    .callout strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Contact card */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: rgba(0,229,255,0.45);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-text strong {
+      display: block;
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .contact-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-text a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .contact-text a:hover { text-decoration: underline; }
+
+    /* ─── Footer ──────────────────────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 36px 40px;
+      border-top: 1px solid var(--border);
+      background: rgba(5,13,21,0.95);
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0.65;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--cyan); }
+
+    /* ─── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 540px) {
+      nav { padding: 0 16px; }
+      .page-hero { padding: 52px 16px 40px; }
+      .layout { padding: 40px 16px 80px; }
+      .doc-body { padding-left: 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══════════════════════════════════════════════════════════ -->
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="logo.png" alt="SapApp Studio" onerror="this.style.display='none'" />
+      <span class="nav-logo-text">SapApp Studio</span>
+    </a>
+    <a class="nav-back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to Home
+    </a>
+  </nav>
+
+  <!-- ═══ PAGE HERO ══════════════════════════════════════════════════════ -->
+  <div class="page-hero">
+    <div class="page-hero-label">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V17a1 1 0 0 1-2 0v-.07A8 8 0 0 1 4.07 11H5a1 1 0 0 1 0 2H4.07A8 8 0 0 1 11 4.07V5a1 1 0 0 1 2 0v-.93A8 8 0 0 1 19.93 11H19a1 1 0 0 1 0-2h.93A8 8 0 0 1 13 16.93z"/></svg>
+      Legal Document
+    </div>
+    <h1>PRIVACY POLICY</h1>
+    <div class="page-hero-meta">
+      <span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Last updated: <!-- INSERT DATE -->
+      </span>
+      <span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Blast Ship — SapApp Studio
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN LAYOUT ════════════════════════════════════════════════════ -->
+  <div class="layout">
+
+    <!-- ── Sidebar TOC ── -->
+    <aside class="toc">
+      <div class="toc-title">Contents</div>
+      <ul>
+        <li><a href="#s1">1. Introduction</a></li>
+        <li><a href="#s2">2. Data We Collect</a></li>
+        <li><a href="#s3">3. How We Use Data</a></li>
+        <li><a href="#s4">4. Data Sharing</a></li>
+        <li><a href="#s5">5. Data Storage</a></li>
+        <li><a href="#s6">6. Children's Privacy</a></li>
+        <li><a href="#s7">7. Your Rights</a></li>
+        <li><a href="#s8">8. Data Deletion</a></li>
+        <li><a href="#s9">9. Cookies & Analytics</a></li>
+        <li><a href="#s10">10. Changes</a></li>
+        <li><a href="#s11">11. Contact Us</a></li>
+      </ul>
+    </aside>
+
+    <!-- ── Document body ── -->
+    <main class="doc">
+
+      <!-- 1 -->
+      <div class="doc-section" id="s1">
+        <div class="doc-section-header">
+          <div class="section-number">1</div>
+          <h2>Introduction</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR INTRODUCTION TEXT HERE -->
+          <p>Your introduction text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="doc-section" id="s2">
+        <div class="doc-section-header">
+          <div class="section-number">2</div>
+          <h2>Data We Collect</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR DATA COLLECTION TEXT HERE -->
+          <!-- Example of a list: -->
+          <!-- <ul>
+            <li>Account information (username, email)</li>
+            <li>Game progress and statistics</li>
+            <li>In-app purchase history</li>
+            <li>Device information</li>
+          </ul> -->
+          <p>Your data collection text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="doc-section" id="s3">
+        <div class="doc-section-header">
+          <div class="section-number">3</div>
+          <h2>How We Use Data</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR DATA USAGE TEXT HERE -->
+          <p>Your data usage text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="doc-section" id="s4">
+        <div class="doc-section-header">
+          <div class="section-number">4</div>
+          <h2>Data Sharing</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR DATA SHARING TEXT HERE -->
+          <p>Your data sharing text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="doc-section" id="s5">
+        <div class="doc-section-header">
+          <div class="section-number">5</div>
+          <h2>Data Storage &amp; Security</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR DATA STORAGE TEXT HERE -->
+          <p>Your data storage text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="doc-section" id="s6">
+        <div class="doc-section-header">
+          <div class="section-number">6</div>
+          <h2>Children's Privacy</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR CHILDREN'S PRIVACY TEXT HERE -->
+          <p>Your children's privacy text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="doc-section" id="s7">
+        <div class="doc-section-header">
+          <div class="section-number">7</div>
+          <h2>Your Rights</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR USER RIGHTS TEXT HERE -->
+          <p>Your user rights text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="doc-section" id="s8">
+        <div class="doc-section-header">
+          <div class="section-number">8</div>
+          <h2>Data Deletion</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR DATA DELETION TEXT HERE -->
+          <!-- Tip — you can use this callout box for important notices: -->
+          <div class="callout">
+            <strong>To request account &amp; data deletion:</strong><br/>
+            Send an email to <a href="mailto:support@sapappstudio.com">support@sapappstudio.com</a>
+            with the subject <strong>"Data Deletion Request"</strong> and your in-game username.
+            All data will be permanently deleted within 30 days.
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="doc-section" id="s9">
+        <div class="doc-section-header">
+          <div class="section-number">9</div>
+          <h2>Cookies &amp; Analytics</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR COOKIES / ANALYTICS TEXT HERE -->
+          <p>Your cookies and analytics text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="doc-section" id="s10">
+        <div class="doc-section-header">
+          <div class="section-number">10</div>
+          <h2>Changes to This Policy</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR POLICY CHANGES TEXT HERE -->
+          <p>Your policy changes text goes here.</p>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="doc-section" id="s11">
+        <div class="doc-section-header">
+          <div class="section-number">11</div>
+          <h2>Contact Us</h2>
+        </div>
+        <div class="doc-body">
+          <!-- ✏️ PASTE YOUR CONTACT TEXT HERE (or leave the cards below) -->
+          <p>If you have any questions about this Privacy Policy, please reach out:</p>
+
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <div class="contact-text">
+              <strong>Support &amp; Privacy Inquiries</strong>
+              <span><a href="mailto:support@sapappstudio.com">support@sapappstudio.com</a></span>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">🏢</div>
+            <div class="contact-text">
+              <strong>Developer</strong>
+              <span>SapApp Studio</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ═══ FOOTER ═════════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-copy">© 2024 SapApp Studio. All rights reserved.</p>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="mailto:support@sapappstudio.com">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
