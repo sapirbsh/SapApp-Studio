@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions — Blast Ship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep:    #050d15;
+      --bg-card:    #0a1929;
+      --bg-panel:   #0d2137;
+      --cyan:       #00e5ff;
+      --green:      #00ff88;
+      --text:       #cfd8e3;
+      --text-muted: #5a7a93;
+      --border:     rgba(0,229,255,0.18);
+      --glow-cyan:  0 0 24px rgba(0,229,255,0.35);
+      --radius:     14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grid backdrop */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Nav ─────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 68px;
+      background: rgba(5,13,21,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 34px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-logo-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 2px;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .nav-back:hover { color: var(--cyan); border-color: rgba(0,229,255,0.4); }
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+
+    /* ─── Page hero ───────────────────────────────────────────────────── */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 72px 24px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(0,100,160,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-hero-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 16px;
+      border: 1px solid rgba(0,229,255,0.28);
+      border-radius: 40px;
+      background: rgba(0,229,255,0.05);
+    }
+
+    .page-hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(0,229,255,0.35);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─── Layout ──────────────────────────────────────────────────────── */
+    .layout {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 780px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { display: none; }
+    }
+
+    /* ─── Table of contents ─────────────────────────── */
+    .toc {
+      position: sticky;
+      top: 88px;
+    }
+
+    .toc-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+    .toc a {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 7px;
+      border-left: 2px solid transparent;
+      transition: all 0.18s;
+      line-height: 1.4;
+    }
+
+    .toc a:hover {
+      color: var(--cyan);
+      background: rgba(0,229,255,0.06);
+      border-left-color: var(--cyan);
+    }
+
+    /* ─── Document ────────────────────────────────────────────────────── */
+    .doc-section {
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(0,229,255,0.08);
+    }
+
+    .doc-section:last-child { border-bottom: none; }
+
+    .doc-section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-number {
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bg-deep);
+      background: var(--cyan);
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .doc-section h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .doc-body {
+      padding-left: 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .doc-body p {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .doc-body ul {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .doc-body li { font-size: 14px; line-height: 1.75; color: var(--text); }
+    .doc-body li::marker { color: var(--cyan); }
+
+    .doc-body a {
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,229,255,0.30);
+      transition: all 0.18s;
+    }
+
+    .doc-body a:hover { color: #fff; border-color: rgba(0,229,255,0.8); }
+
+    .callout {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--cyan);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    footer {
+      padding: 36px 40px;
+      border-top: 1px solid var(--border);
+      background: rgba(5,13,21,0.95);
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy { font-size: 12px; color: var(--text-muted); opacity: 0.65; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span class="nav-logo-text">SapApp Studio</span>
+    </a>
+    <a class="nav-back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to Home
+    </a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-label">Service Agreement</div>
+    <h1>TERMS & CONDITIONS</h1>
+    <div class="page-hero-meta">
+      <span>Last updated: 2026-04-04</span>
+      <span>Blast Ship — SapApp Studio</span>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="toc">
+      <div class="toc-title">Contents</div>
+      <ul>
+        <li><a href="#s1">1. Acceptance</a></li>
+        <li><a href="#s2">2. Intellectual Property</a></li>
+        <li><a href="#s3">3. Data & Security</a></li>
+        <li><a href="#s4">4. Third-Party Services</a></li>
+        <li><a href="#s5">5. Connectivity & Billing</a></li>
+        <li><a href="#s6">6. AI Technologies</a></li>
+        <li><a href="#s7">7. Updates & Termination</a></li>
+        <li><a href="#s8">8. Contact Us</a></li>
+      </ul>
+    </aside>
+
+    <main class="doc">
+      <section class="doc-section" id="s1">
+        <div class="doc-section-header">
+          <div class="section-number">1</div>
+          <h2>Acceptance of Terms</h2>
+        </div>
+        <div class="doc-body">
+          <p>These terms and conditions apply to the Blast Ship app (hereby referred to as "Application") for mobile devices that was created by <strong>Sapir Zelinsky</strong> (hereby referred to as "Service Provider") as a Free service.</p>
+          <p>Upon downloading or utilizing the Application, you are automatically agreeing to the following terms. It is strongly advised that you thoroughly read and understand these terms prior to using the Application.</p>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s2">
+        <div class="doc-section-header">
+          <div class="section-number">2</div>
+          <h2>Intellectual Property</h2>
+        </div>
+        <div class="doc-body">
+          <p>Unauthorized copying, modification of the Application, any part of the Application, or our trademarks is strictly prohibited. Any attempts to extract the source code of the Application, translate the Application into other languages, or create derivative versions are not permitted.</p>
+          <p>All trademarks, copyrights, database rights, and other intellectual property rights related to the Application remain the property of the Service Provider.</p>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s3">
+        <div class="doc-section-header">
+          <div class="section-number">3</div>
+          <h2>Data & Security</h2>
+        </div>
+        <div class="doc-body">
+          <p>The Application stores and processes personal data that you have provided to the Service Provider in order to provide the Service. It is your responsibility to maintain the security of your phone and access to the Application.</p>
+          <div class="callout">
+            <strong>Warning:</strong> The Service Provider strongly advises against jailbreaking or rooting your phone. Such actions could expose your device to malware, compromise security features, and result in the Application not functioning correctly.
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s4">
+        <div class="doc-section-header">
+          <div class="section-number">4</div>
+          <h2>Third-Party Services</h2>
+        </div>
+        <div class="doc-body">
+          <p>The Application utilizes third-party services that have their own Terms and Conditions. Links to these providers:</p>
+          <ul>
+            <li><a href="https://play.google.com/about/play-terms/" target="_blank">Google Play Services</a></li>
+            <li><a href="https://developers.google.com/admob/terms" target="_blank">AdMob</a></li>
+            <li><a href="https://firebase.google.com/terms/analytics" target="_blank">Google Analytics for Firebase</a></li>
+            <li><a href="https://firebase.google.com/terms/crashlytics" target="_blank">Firebase Crashlytics</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s5">
+        <div class="doc-section-header">
+          <div class="section-number">5</div>
+          <h2>Connectivity & Billing</h2>
+        </div>
+        <div class="doc-body">
+          <p>Some functions of the Application require an active internet connection. The Service Provider cannot be held responsible if the Application does not function at full capacity due to lack of access to Wi-Fi or data allowance exhaustion.</p>
+          <p>By using the application, you accept responsibility for any charges incurred from your mobile network provider, including roaming data charges.</p>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s6">
+        <div class="doc-section-header">
+          <div class="section-number">6</div>
+          <h2>AI Technologies</h2>
+        </div>
+        <div class="doc-body">
+          <p>The Application incorporates <strong>Artificial Intelligence (AI)</strong> technologies to provide certain features. By using the Application, you acknowledge and agree that AI may be used to process data and deliver functionalities designed to benefit the user experience.</p>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s7">
+        <div class="doc-section-header">
+          <div class="section-number">7</div>
+          <h2>Updates & Termination</h2>
+        </div>
+        <div class="doc-body">
+          <p>The Service Provider may update the application at some point. You will need to download updates to continue using the service. The Service Provider may also terminate the use of the application at any time without notice.</p>
+          <p>Upon termination, all licenses granted to you will end, and you must cease using the application and delete it from your device.</p>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s8">
+        <div class="doc-section-header">
+          <div class="section-number">8</div>
+          <h2>Contact Us</h2>
+        </div>
+        <div class="doc-body">
+          <div class="callout">
+            If you have any questions or suggestions, contact us at: <br/>
+            <a href="mailto:sapirbsh@gmail.com">sapirbsh@gmail.com</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-copy">© 2024 SapApp Studio. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
